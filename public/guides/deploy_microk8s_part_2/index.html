@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Deploying Apps to Microk8s on a Raspberry Pi - Part 2 · Standalone Dynamics
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Menzi Mthembu">
+<meta name="description" content="Deploying Apps to Microk8s on a Raspberry Pi">
+<meta name="keywords" content="">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying Apps to Microk8s on a Raspberry Pi - Part 2"/>
+<meta name="twitter:description" content="Deploying Apps to Microk8s on a Raspberry Pi"/>
+
+<meta property="og:title" content="Deploying Apps to Microk8s on a Raspberry Pi - Part 2" />
+<meta property="og:description" content="Deploying Apps to Microk8s on a Raspberry Pi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_2/" /><meta property="article:section" content="guides" />
+<meta property="article:published_time" content="2024-01-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-20T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_2/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.e1bdf152d93b060b06ba5d496486ed9c201a8b95d335e035beb5faebe3b61cad.css" integrity="sha256-4b3xUtk7BgsGul1JZIbtnCAai5XTNeA1vrX66&#43;O2HK0=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Standalone Dynamics
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/blog">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/guides">Mini Guides</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_2/">
+              Deploying Apps to Microk8s on a Raspberry Pi - Part 2
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-01-20T00:00:00Z">
+                Jan 20, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              6-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/microk8s/">Microk8s</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/docker/">Docker</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/kubernetes/">Kubernetes</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/raspberry-pi/">Raspberry Pi</a>
+    </span></div>
+
+        </div>
+      </header>
+      <aside><nav id="TableOfContents">
+  <ul>
+    <li><a href="#fastapi--vuejs">FastAPI + VueJS</a>
+      <ul>
+        <li><a href="#docker">Docker</a>
+          <ul>
+            <li><a href="#backend-image">Backend Image</a></li>
+            <li><a href="#frontend-image">Frontend Image</a></li>
+          </ul>
+        </li>
+        <li><a href="#manifests">Manifests</a>
+          <ul>
+            <li><a href="#storage">Storage</a></li>
+            <li><a href="#deployment">Deployment</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#ingress">Ingress</a></li>
+          </ul>
+        </li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></aside>
+
+      <div class="post-content">
+        
+        <h1 id="fastapi--vuejs">
+  FastAPI + VueJS
+  <a class="heading-link" href="#fastapi--vuejs">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>In <a href="../deploy_microk8s_part_1" >Part 1</a> of this guide, we setup a Microk8s instance and deployed a rust web application. In part 2, we are going to deploy a web application that has a separate frontend and backend and see how they can communicate with one another.</p>
+<p>The backend uses the <a href="https://fastapi.tiangolo.com/"  class="external-link" target="_blank" rel="noopener">FastAPI</a> framework.</p>
+<p>The frontend uses the <a href="https://vuejs.org/"  class="external-link" target="_blank" rel="noopener">Vuejs</a>.</p>
+<h2 id="docker">
+  Docker
+  <a class="heading-link" href="#docker">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="backend-image">
+  Backend Image
+  <a class="heading-link" href="#backend-image">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The backend application consists of just 2 endpoints.</p>
+<p><img src="/fastapi.png" alt="api endpoints"></p>
+<p>Here is how the DockerFile looks like.</p>
+<pre tabindex="0"><code>FROM python:3.11-bookworm
+
+WORKDIR /code
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./app /code/app
+
+EXPOSE 8000
+
+CMD [&#34;fastapi&#34;, &#34;run&#34;, &#34;app/main.py&#34;, &#34;--port&#34;, &#34;8000&#34;]
+</code></pre><p>We&rsquo;ll create an image called <code>weight-backend</code>, we&rsquo;ll build it by running</p>
+<pre tabindex="0"><code>docker buildx build -t development.local:32000/weight-backend:latest --load --platform linux/arm64 .
+</code></pre><p>Once the image is built we can push it to our private registry.</p>
+<pre tabindex="0"><code>docker push development.local:32000/weight-backend:latest
+</code></pre><h3 id="frontend-image">
+  Frontend Image
+  <a class="heading-link" href="#frontend-image">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Lets create a DockerFile for our frontend image and build it.</p>
+<pre tabindex="0"><code>FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+RUN npm install -g http-server
+
+EXPOSE 5000
+
+# Command to run the application
+CMD [&#34;http-server&#34;, &#34;-p&#34;, &#34;5000&#34;, &#34;dist&#34;]
+</code></pre><p>We&rsquo;ll use the the simple <code>http-server</code> to serve our application as it will be enough for our situation.</p>
+<p>We&rsquo;ll call this image <code>weight-frontend</code>.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; docker buildx build -t development.local:32000/weight-frontend:latest --load --platform linux/arm64 .
+</code></pre><p>Lets push</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; docker push development.local:32000/weight-frontend:latest
+</code></pre><h2 id="manifests">
+  Manifests
+  <a class="heading-link" href="#manifests">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>On the development server lets create a folder <code>apps/weight</code> to place our kubernetes files in, this folder is different to our <code>weight-tracker</code> folder which contains our rust application.</p>
+<h3 id="storage">
+  Storage
+  <a class="heading-link" href="#storage">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>One thing we are going to change from the rust based application is that we are going to use the <code>sqlite</code> database instead of <code>postgresql</code>. This change means that we need a place to store the sqlite database file, which we&rsquo;ll call <code>weight-tracker.db</code>.</p>
+<p>We cannot store the database in the pods as they are ephemeral, meaning that when you restart a pod any data that was stored there will be deleted.</p>
+<p>We need an alternative solution. In the docker space, if you want to persist data you&rsquo;d have to use <a href="https://docs.docker.com/engine/storage/volumes/"  class="external-link" target="_blank" rel="noopener">docker volumes</a>, that idea can be extended to kubernetes, the terminology used is <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/"  class="external-link" target="_blank" rel="noopener">PersistantVolumes</a> also called <code>storage classes</code> and <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes"  class="external-link" target="_blank" rel="noopener">PersistantVolumeClaims</a>.</p>
+<p>How I like to think about the 2 concepts is - one manages the storage (PV) and one asks for a bit of storage (PVC) that will be used by the containers</p>
+<p>In microk8s there is an addon called <a href="https://microk8s.io/docs/addon-hostpath-storage"  class="external-link" target="_blank" rel="noopener">Hostpath Storage</a> which is a certain type of storage, which will allow us to create the necessary storage on the development server.</p>
+<p>The are various other types of <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/"  class="external-link" target="_blank" rel="noopener">storage</a> options in the kubernetes space.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; microk8s enable hostpath-storage
+</code></pre><p>One very important thing to note, this will only work for a single node cluster, If you have a multi node cluster (multiple raspberry pis) something like <a href="https://microk8s.io/docs/how-to-nfs"  class="external-link" target="_blank" rel="noopener">CSI for NFS</a> would be more appropriate.</p>
+<p>Let create the necessary storage manifests for the backend container.</p>
+<p><code>backend-storage.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: database-hostpath
+provisioner: microk8s.io/hostpath
+reclaimPollicy: Deleted
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  pvDir: ~/app/database
+</code></pre><p>So, we&rsquo;ve created a storage volume that&rsquo;s 1GB in the <code>~/app/database</code> directory on the server. The <code>volumeBindingMode</code> tells us when provisioning of the storage should occur, in our case <code>WaitForFirstConsumer</code> means wait until the pod schedules it.
+We can apply this manifest.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f backend-storage.yaml
+</code></pre><p>We can check if our storage has been created by</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get storageclass
+</code></pre><p>We now we what to claim(use) a portion of storage for our weight application, lets create its manifest.</p>
+<p><code>backend-pvc.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: apps/v1
+kind: PersistentVolumeClaim
+metadata:
+  name: weight-pvc
+spec:
+  storageClassName: database-hostpath
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50mb
+</code></pre><p>Since we will only be storing the database file 50MB should be enough for a very long time, applying</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f backend-pvc.yaml
+</code></pre><p>we can check it has being created.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get pvc
+</code></pre><p>The storage has not been provisioned at this stage, we&rsquo;ve just specified a claim that we are going to use. So now that is setup we can start creating our deployment manifest.</p>
+<h3 id="deployment">
+  Deployment
+  <a class="heading-link" href="#deployment">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><code>backend-deployment.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weight-backend-deployment
+  labels:
+    app: weight-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weight-backend
+  template:
+    metadata:
+      labels:
+        app: weight-backend
+    spec:
+      volumes:
+        - name: fastapi-store
+          persistantVolumeClaim:
+            claimName: weight-pvc
+      containers:
+        - name: weight-backend
+          image: development.local:32000/weight-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /code/app/data
+              name: fastapi-store
+</code></pre><p>So in <code>spec.volumes</code> we&rsquo;ve defined a volume that we are going to use, and within the container, we are going to mount it on <code>/code/app/data</code>, remember in our Dockerfile our app runs in the directory <code>/code/app</code>. So when the application starts up the sqlite database, <code>weight-tracker.db</code> will be placed in the <code>data</code> directory.</p>
+<p><code>frontend-deployment.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weight-frontend-deployment
+  labels:
+    app: weight-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weight-frontend
+  template:
+    metadata:
+      labels:
+        app: weight-frontend
+    spec:
+      containers:
+        - name: weight-frontend
+          image: development.local:3200/weight-frontend:latest
+          ports:
+            - containerPort: 5000
+</code></pre><p>Applying our deployment manifests</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f backend-deployment.yaml
+&gt;&gt;&gt; kubectl apply -f frontend-deployment.yaml
+</code></pre><p>We can check that they have being deployed via</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get pods
+</code></pre><h3 id="service">
+  Service
+  <a class="heading-link" href="#service">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Lets also create our service manifests.</p>
+<p><code>backend-service.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: weight-backend-service
+spec:
+  selector:
+    app: weight-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+</code></pre><p><code>frontend-service.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: weight-frontend-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: weight
+</code></pre><p>lets apply these 2 manifests via</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f backend-service.yaml
+
+&gt;&gt;&gt; kubectl apply -f frontend-service.yaml
+</code></pre><p>Running <code>kubectl get services</code>, we see</p>
+<p>One thing we need to think now is how is our frontend app going to communicate with our backend, recall that a service  exposes the pods to the network, so if we run <code>curl ip address</code> of the service, we should be able to hit the backend api and frontend ui. One feature of kubernetes is that it creates DNS records for services, which is the name given to the service. So instead of using the  IP address of the service which could change, we can use the name of the service which will be <code>weight-backend-service</code>. In the vuejs app we have to remember to change the baseURL to point to this url, eg: <code>http://weight-backend-service</code></p>
+<h3 id="ingress">
+  Ingress
+  <a class="heading-link" href="#ingress">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We only need to make the frontend of the app accessible from outside the cluster and not the backend.
+We can go ahead an create local dns entry in our <code>pihole</code>. We will call this application simply weight.</p>
+<p><img src="/weight-dns.png" alt="weight-dns"></p>
+<p><code>ingress.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weight-frontend-ingress
+spec:
+  rules:
+    - host: weight.development.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: weight-frontend-service
+                port:
+                  number: 80
+</code></pre><p>Applying</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f weight-frontend-ingress.yaml
+</code></pre><p>We should now be able to access our application from the browser.</p>
+<h2 id="conclusion">
+  Conclusion
+  <a class="heading-link" href="#conclusion">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>So in this guides we&rsquo;ve gone through the process of setting up a Microk8s instance and deployed a couple of applications on it. This has allowed us to get a better understanding of the Kubernetes ecosystem and the ideas around it.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Menzi Mthembu 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
