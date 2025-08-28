@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Standalone Dynamics</title>
+    <link>https://www.standalonedynamics.co.za/tags/python/</link>
+    <description>Recent content in python on Standalone Dynamics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.standalonedynamics.co.za/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Homepage for your Django API</title>
+      <link>https://www.standalonedynamics.co.za/blog/django_api_homepage/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.standalonedynamics.co.za/blog/django_api_homepage/</guid>
+      <description>I created an api for a django application of mine amalisidi and I wanted to create a basic homepage for the api. Reading up on the documentation did not really give me a clear picture as to how I would go about it, so I&amp;rsquo;m documenting it here to save my future self.
+First lets add the api&amp;rsquo;s homepage url, in the main urls.py file
+from rest_framework.documentation import include_docs_urls then under urlpatterns</description>
+    </item>
+    
+  </channel>
+</rss>
