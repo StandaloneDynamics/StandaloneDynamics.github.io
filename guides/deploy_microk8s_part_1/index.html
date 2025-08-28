@@ -1,2 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Deploying Apps to Microk8s on a Raspberry Pi - Part 1 · Standalone Dynamics
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
 
 
+
+
+<meta name="author" content="Menzi Mthembu">
+<meta name="description" content="Deploying Apps to Microk8s on a Raspberry Pi">
+<meta name="keywords" content="">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying Apps to Microk8s on a Raspberry Pi - Part 1"/>
+<meta name="twitter:description" content="Deploying Apps to Microk8s on a Raspberry Pi"/>
+
+<meta property="og:title" content="Deploying Apps to Microk8s on a Raspberry Pi - Part 1" />
+<meta property="og:description" content="Deploying Apps to Microk8s on a Raspberry Pi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/" /><meta property="article:section" content="guides" />
+<meta property="article:published_time" content="2024-01-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-20T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.e1bdf152d93b060b06ba5d496486ed9c201a8b95d335e035beb5faebe3b61cad.css" integrity="sha256-4b3xUtk7BgsGul1JZIbtnCAai5XTNeA1vrX66&#43;O2HK0=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Standalone Dynamics
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/about">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/blog">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/projects">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/guides">Mini Guides</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/">
+              Deploying Apps to Microk8s on a Raspberry Pi - Part 1
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-01-20T00:00:00Z">
+                Jan 20, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              13-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/microk8s/">Microk8s</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/docker/">Docker</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/kubernetes/">Kubernetes</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/raspberry-pi/">Raspberry Pi</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/rust/">Rust</a>
+    </span></div>
+
+        </div>
+      </header>
+      <aside><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#infrastructure-setup">Infrastructure Setup</a>
+      <ul>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#image-storage">Image Storage</a></li>
+        <li><a href="#docker">Docker</a></li>
+        <li><a href="#dns">DNS</a></li>
+      </ul>
+    </li>
+    <li><a href="#weight-tracker-application">Weight Tracker Application</a>
+      <ul>
+        <li><a href="#rust-version">Rust Version</a>
+          <ul>
+            <li><a href="#docker-1">Docker</a>
+              <ul>
+                <li><a href="#image">Image</a></li>
+              </ul>
+            </li>
+            <li><a href="#manifests">Manifests</a>
+              <ul>
+                <li><a href="#deployment">Deployment</a></li>
+                <li><a href="#configmap">ConfigMap</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#ingress">Ingress</a></li>
+                <li><a href="#deployed">Deployed</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></aside>
+
+      <div class="post-content">
+        
+        <h1 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>In this guide we&rsquo;ll be going through the steps of setting up a <a href="https://microk8s.io/"  class="external-link" target="_blank" rel="noopener">Microk8</a> instance and deploying some applications to it. The aim is to get an better understanding of <a href="https://kubernetes.io/"  class="external-link" target="_blank" rel="noopener">Kubernetes</a> and figuring out what&rsquo;s involved in getting applications running.
+Microk8s is a lightweight version of Kubernetes meant to run on smaller devices such as raspberry pis&rsquo;. It also comes with addons which allow you to add features as needed.</p>
+<p>This guide will be broken into 2 parts</p>
+<ul>
+<li>
+<p>Part 1, we will setup Microk8s and deploy a <a href="https://www.rust-lang.org/"  class="external-link" target="_blank" rel="noopener">Rust</a> based application and use the <a href="https://rocket.rs/"  class="external-link" target="_blank" rel="noopener">Rocket</a> web framework.</p>
+</li>
+<li>
+<p><a href="../deploy_microk8s_part_2" >Part 2</a>, we will deploy an application which has a seprate backend and frontend. The backend will be using <a href="https://fastapi.tiangolo.com/"  class="external-link" target="_blank" rel="noopener">FastApi</a> while the frontend will be <a href="https://vuejs.org/"  class="external-link" target="_blank" rel="noopener">Vue</a> based.</p>
+</li>
+</ul>
+<p>In each of the deployments we will come accross various of kubernetes which will help us learn more about it.</p>
+<p>Creating the applications is not the focus of this guide, just the setup of the Microk8 instance and the configurations needed to deploy them.</p>
+<p>The deployment of the web application will not involve any automation tools (CI/CD/helm), rather we&rsquo;ll manually deploy them, then create a bash script to somewhat automate the process..</p>
+<h1 id="infrastructure-setup">
+  Infrastructure Setup
+  <a class="heading-link" href="#infrastructure-setup">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>The setup for this guide looks as follows.</p>
+<ul>
+<li>Rasberry Pi 4  - Used to run Microk8s with our applications with a hostname of <code>development.local</code>.</li>
+<li>Raspberry Pi 2 - Used for local DNS using PiHole, hostname <code>dns.local</code>, which will come in handy later.</li>
+</ul>
+<p>All the above raspberry pi&rsquo;s are running Ubuntu 24.04 LTS and are on the same internal network.</p>
+<h2 id="install">
+  Install
+  <a class="heading-link" href="#install">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Before Microk8s can be setup on our <code>development.local</code> machine, control groups (<code>cgroups</code>) need to be enabled and certain kernel modules installed on the raspberry pi.</p>
+<ul>
+<li>Add the config variable <code>cgroup_enable=memory cgroup_memory=1</code> to the <code>/boot/firmware/cmdline.txt</code> file.</li>
+</ul>
+<p>If you have a kernel version &lt;= 6.7, you&rsquo;ll need to run the below command.</p>
+<ul>
+<li>
+<p><code>&gt;&gt;&gt; sudo apt install linux-modules-extra-raspi</code></p>
+</li>
+<li>
+<p>Reboot your raspberry pi to make sure your changes have taken place.</p>
+</li>
+</ul>
+<p>We can now install Microk8s using the following</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; sudo snap install microk8s --classic
+</code></pre><p>This will install the latest stable version, the stable versions follows the release cycle of the kubernetes project.</p>
+<p>We then add our user to the microk8s group and set permissions on the <code>~/.kube</code> config directory.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; sudo usermod -a -G microk8s $USER
+</code></pre><p>where <code>$USER</code> is the currently logged in user.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; sudo chown -f -R $USER ~/.kube
+</code></pre><p>Logout then login to apply the permissions.</p>
+<p>So now that we have Microk8s installed, lets check if it&rsquo;s up and running.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; microk8s kubectl get services
+</code></pre><p>This should return a table with any services that are currently running. This shows us that our instance is running and working correctly.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">CLUSTER-IP</th>
+<th style="text-align:left">EXTERNAL-IP</th>
+<th style="text-align:left">PORT(s)</th>
+<th style="text-align:left">AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Kubernetes</td>
+<td style="text-align:left">ClusterIP</td>
+<td style="text-align:left">10.152.183.1</td>
+<td style="text-align:left"><!-- raw HTML omitted --></td>
+<td style="text-align:left">443/TCP</td>
+<td style="text-align:left">4m11s</td>
+</tr>
+</tbody>
+</table>
+<p>Your Cluster-IP address could be different.</p>
+<p>We can shorten these microk8s commands by creating an alias in our <code>~/.bashrc</code> file.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; alias kubectl=&#39;microk8s kubectl&#39;
+</code></pre><p>Reload the bash settings via,</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; source ~/.bashrc
+</code></pre><p>Now we can use the alias as such</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get services
+</code></pre><p>This is how the commands look when using actual Kubernetes, nice.</p>
+<h2 id="image-storage">
+  Image Storage
+  <a class="heading-link" href="#image-storage">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We need a place to store our docker images that we are going to build. We could store them on <a href="https://hub.docker.com/_/registry"  class="external-link" target="_blank" rel="noopener">docker hub</a> but for this guide we are going to take the self hosted route.</p>
+<p>Microk8s comes with an addon called <a href="https://microk8s.io/docs/registry-images"  class="external-link" target="_blank" rel="noopener">registry</a>, which will allow us to do just that. So it will allow us to create our own private registry whereby we can pull and push our docker images.</p>
+<p>To enable it:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; microk8s enable registry
+</code></pre><p>This creates an insecure registry by default but since we are using this on our local network this will be fine.
+If you are planning on using this over the internet it&rsquo;s recommened to make it secure. You can read more about it <a href="https://microk8s.io/docs/registry-private"  class="external-link" target="_blank" rel="noopener">here</a>.</p>
+<p>An important thing to note is that the registry sits outside of Microk8s, so images will need to be pulled into it, so we have to tell Microk8s about this registry.
+We have to create a <a href="https://microk8s.io/docs/registry-private#configuring-microk8s"  class="external-link" target="_blank" rel="noopener">hosts.toml</a> and configure some settings</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; sudo mkdir -p /var/snap/microk8s/current/args/certs.d/10.42.0.105:32000
+</code></pre><p>Remember that out registry will be on the same machine as the Mirok8s instance, so I&rsquo;m using the ip address here</p>
+<p>Create a <code>hosts.toml</code> file in that directory</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; sudo touch /var/snap/microk8s/current/args/certs.d/10.42.0.105:32000/hosts.toml
+</code></pre><p>Add the following to that file.</p>
+<pre tabindex="0"><code>server = &#34;http://10.42.0.105:32000&#34;
+
+[host.&#34;http://10.42.0.105:32000&#34;]
+capabilities = [&#34;pull&#34;, &#34;resolve&#34;]
+</code></pre><p>We need to restart Microk8s for the changes to take affect.</p>
+<p>This will now allow us to pull the images into Mircok8s.</p>
+<h2 id="docker">
+  Docker
+  <a class="heading-link" href="#docker">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>By default docker does not allow pushing images to insecure registries, which our newly created one is, so we have to explicitly allow it in the docker config file <code>/etc/docker/daemon.json</code>. This is the config file on the machine in which you will be builing and pushing images, in my case my desktop.</p>
+<p>In the file add</p>
+<pre tabindex="0"><code>{
+  &#34;insecure-registries&#34; : [&#34;development.local:32000&#34;]
+}
+</code></pre><p>This will now allow us to push our images to our registry. You can use the <code>IP</code> address of the machine as well.</p>
+<h2 id="dns">
+  DNS
+  <a class="heading-link" href="#dns">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>When we have our applications running we want to be able to access them from other machines by using a dns name instead of an ip address.</p>
+<p><a href="https://pi-hole.net/"  class="external-link" target="_blank" rel="noopener">Pihole</a> allows us to setup local DNS within our network so that we can use a dns name instead of the ip address.
+So for instance, we will be accessing our apps via <code>http://&lt;app&gt;.development.local</code> where <code>app</code> will be the name of the application.</p>
+<p>To setup local DNS in the pihole see <a href="https://docs.pi-hole.net/ftldns/configfile/"  class="external-link" target="_blank" rel="noopener">here</a></p>
+<h1 id="weight-tracker-application">
+  Weight Tracker Application
+  <a class="heading-link" href="#weight-tracker-application">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>The web application is a very simple one, keeps track of a persons weight. Enter value and date then plot on graph. We&rsquo;ll be building 2 versions of this application. The rust version, while the other will be built with FastAPI and Vuejs.</p>
+<p><img src="/weight-tracker.png" alt="weight-tracker"></p>
+<h2 id="rust-version">
+  Rust Version
+  <a class="heading-link" href="#rust-version">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="docker-1">
+  Docker
+  <a class="heading-link" href="#docker-1">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Ok, lets create a docker image of our project.</p>
+<p>We&rsquo;ll be using multi-stage build step in order to reduce the size of our image</p>
+<p>Since this image will be deployed to a raspberry pi (armv8) which has a different architecture to the desktop machine that we are developing(amd64), we need to utilize multi-arch building,</p>
+<p>For that we need to use the <a href="https://docs.docker.com/buildx/working-with-buildx/"  class="external-link" target="_blank" rel="noopener">docker buildx</a> tool which will allow us to achive that.</p>
+<h4 id="image">
+  Image
+  <a class="heading-link" href="#image">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Our Dockerfile will look as follows</p>
+<pre tabindex="0"><code>FROM rust:1.84-bookworm AS builder
+
+RUN apt update &amp;&amp; apt upgrade -y 
+RUN apt install -y g++-arm-linux-gnueabihf libc6-dev-armhf-cross gcc-arm-linux-gnueabihf
+
+RUN rustup target add aarch64-unknown-linux-gnu
+RUN rustup toolchain install stable-aarch64
+
+WORKDIR /build
+COPY src/ /build/src/
+COPY Cargo.toml /build/
+
+RUN cargo build --target aarch64-unknown-linux-gnu --release
+
+
+FROM rust:1.84-slim
+WORKDIR /app
+COPY --from=builder /build/target/aarch64-unknown-linux-gnu/release/weight-tracker /app/
+COPY templates/ /app/templates/
+COPY static /app/static/
+
+
+RUN chmod +x weight-tracker
+EXPOSE 8000
+</code></pre><p>A few things to note.</p>
+<ul>
+<li>We explicitly specifying what architecture we want to build for by using <code>--target aarch64-unknown-linux-gnu</code></li>
+<li>weight-tracker is the name of the binary that is generated.</li>
+<li>For the rocket web framework the template and static files are not automaticaly included in the binary so they have to copied over to the same directory as the binary</li>
+</ul>
+<p>We are now ready to build our image with the following command.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; docker buildx build -t development.local:32000/weight-tracker:latest --load --platform linux/arm64 .
+</code></pre><ul>
+<li>
+<p>For the <code>docker buildx</code> command, we have specified which platform we are building for by using the <code>--platform linux/arm64</code> parameter.</p>
+</li>
+<li>
+<p>We also need to tag (<code>-t</code>) our image by using the location of where our registry is.</p>
+</li>
+</ul>
+<p>Once our image is built we can push it to our registry.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; docker push development.local:32000/weight-tracker:latest
+</code></pre><p>Now that we have pushed our image, we need to pull it in. We can do this by</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; microk8s ctr image pull --plain-http development.local:32000/weight-tracker:latest
+</code></pre><h3 id="manifests">
+  Manifests
+  <a class="heading-link" href="#manifests">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Ok so now our image is in our registry, let create a kubernetes manifests files.</p>
+<p><strong>There are ways to automate the creation of kubernetes files but the focus of this guide is to get a better understanding of kubernetes, so I&rsquo;ll be creating these manually.</strong></p>
+<p>On our server we are going to create a couple of directories in <code>$HOME</code></p>
+<pre tabindex="0"><code>&gt;&gt;&gt; mkdir -p apps/weight-tracker
+</code></pre><h4 id="deployment">
+  Deployment
+  <a class="heading-link" href="#deployment">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>In kubernetes, a deployment manifest describes how you want your pods to be managed and ran.
+In our case the pod will consist of one container.
+We are going to try to keep our declaration as simple as possible.</p>
+<pre tabindex="0"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weight-tracker-deployment
+  labels:
+    apps: weight-tracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weight-tracker
+  template:
+    metadata:
+      labels:
+        app: weight-tracker
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: weight-tracker-config
+            items:
+              - key: &#34;Rocket.toml&#34;
+                path: &#34;Rocket.toml&#34;
+      containers:
+        - name: weight-tracker
+          image: 10.42.0.101:32000/weight-tracker:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ROCKET_CONFIG
+              value: /app/data/Rocket.toml
+          volumeMounts:
+            - name: config
+              mountPath: /app/data
+              readOnly: true
+          command: [&#34;./weight-tracker&#34;]
+</code></pre><p>So what&rsquo;s going on in this deployment file.</p>
+<ul>
+<li>We are have created a deployment object called <code>weight-tracker-deployment</code> specified in <code>metadata.name</code> field.</li>
+<li>The specification of this deployment are under <code>spec</code> field.</li>
+<li><code>spec.replicas</code> indicates how many pods should be created.</li>
+<li><code>spec.selector.matchLables</code> tells us how the replica should find the pods, in our case any pods with the label <code>weight-tracker</code></li>
+<li><code>spec.template</code> indicates how the Pods should be created.</li>
+<li><code>spec.template.spec</code> shows the details of the container that will be ran in the Pod, this looks very similar to how a docker compose file would look like.</li>
+</ul>
+<p>If you look under <code>spec.volumes</code> you&rsquo;ll see that we have created some sort of <a href="https://kubernetes.io/docs/concepts/configuration/configmap/"  class="external-link" target="_blank" rel="noopener">ConfigMap</a>, this will allow us to inject application configurations into the pod, we will create this object next.</p>
+<h4 id="configmap">
+  ConfigMap
+  <a class="heading-link" href="#configmap">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Our web framework that we used, rocket, uses a configuration file called <code>Rocket.toml</code> that is used to specify certain parameters, such as port number and database urls, so what we&rsquo;ll like to do is inject this config file into our pod when it starts up. This is where ConfigMaps come into play.</p>
+<p>In the <code>apps/weight-tracker</code> directory we&rsquo;ll create a file called <code>Rocket.toml</code> and populate it with the parameters. We&rsquo;ll create a ConfigMap object via the following command.</p>
+<pre tabindex="0"><code>kubectl create configmap weight-tracker-config --from-file=Rocket.toml
+</code></pre><p>So here we created a ConfigMap object with the name of <code>weight-tracker-config</code> and we want to load the contents of the file from the Rocket.toml file. Out of interest we can use <code>kubectl describe configmap weight-tracker-config</code> to see how the object looks like.</p>
+<pre tabindex="0"><code>Name:         weight-tracker-config
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+
+Data
+====
+Rocket.toml:
+----
+[default]
+address=&#34;0.0.0.0&#34;
+
+[default.databases.weight_tracker]
+url=&#34;postgresql://&lt;username&gt;:passwordt@db.local:5432/weight_tracker&#34;
+
+BinaryData
+====
+
+Events:  &lt;none&gt;
+</code></pre><p>So under the Data section we can see that the data is store as a key-value setup <code>Rocket.toml:&lt;file contents&gt; </code>.</p>
+<p>Now that we have setup this up lets go back let take a look at our deployment file.</p>
+<pre tabindex="0"><code>volumes:
+        - name: config
+          configMap:
+            name: weight-tracker-config
+            items:
+              - key: &#34;Rocket.toml&#34;
+                path: &#34;Rocket.toml&#34;
+</code></pre><p>So here we have created a volume mount named config which uses the weight-tracker-config object we created, we then specify which key from the object should be used, in our case Rocket.toml. The <code>path</code> parameter indicates what name the file should be called when mounted.</p>
+<p>So now lets mount the file.</p>
+<pre tabindex="0"><code>volumeMounts:
+            - name: config
+              mountPath: /app/data
+              readOnly: true
+</code></pre><p>So we&rsquo;ve specified which volume to use as there could be multiple configured and we have specified is which directory to mount this file.
+So the full path of this file will be <code>/app/data/Rocket.toml</code>.</p>
+<p>An important this to note is that if the data directory already exists with files, then those files will be removed.</p>
+<p>Ok, lets apply our deployment file and check that it&rsquo;s working.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f deployment.yaml
+</code></pre><p>We can see the status of this deployment by running</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get pods
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Ready</th>
+<th style="text-align:left">Status</th>
+<th style="text-align:left">Restarts</th>
+<th style="text-align:left">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">weight-tracker-deployment-399b9c4d7d-jhj4s</td>
+<td style="text-align:left">2/2</td>
+<td style="text-align:left">Running</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">1m22s</td>
+</tr>
+<tr>
+<td style="text-align:left">weight-tracker-deployment-699b9cds7d-jhj4s</td>
+<td style="text-align:left">2/2</td>
+<td style="text-align:left">Running</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">1m20s</td>
+</tr>
+</tbody>
+</table>
+<p>Looking all good so far.
+We can also check if our weight tracker application is working by looking at the logs</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl logs weight-tracker-deployment-699b9c4d7d-jhj4
+</code></pre><p>For our application output is</p>
+<pre tabindex="0"><code>Configured for production.
+    =&gt; address: 0.0.0.0
+...
+Rocket has launched from http://0.0.0.0:8000
+</code></pre><p>So we can see that our web application has successfully launched.</p>
+<p>Now need some way to access these pods over the network</p>
+<h4 id="service">
+  Service
+  <a class="heading-link" href="#service">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>Right now we do not have a way to access our application, this is where a Kubernetes <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/"  class="external-link" target="_blank" rel="noopener">Service</a> will come into play.
+A service allows us to expose our pods to the network by proving and endpoint we can use to connect to the pods.
+A simple example is if you have separate backend pods and separate frontend pods and they need to communicate with each other, they can communicate via services.</p>
+<p>So when a request comes to the <code>weight-tracker-service</code> that request will be mapped to the port that the pods are running on, in our case port 8000.</p>
+<p>Lets create a very simple service declaration in <code>service.yaml</code></p>
+<pre tabindex="0"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: weight-tracker-service
+spec:
+  selector:
+    app: weight-tracker
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+</code></pre><ul>
+<li>We tell the service which Pods to target via the <code>spec.selector</code>, remember in the deployment file we defined the name as <code>template.metadata.labels.app.weight-tracker</code></li>
+</ul>
+<p>Ok, lets apply this service object  and check that it is working.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f service.yaml
+</code></pre><p>We can see the status of this deployment by running</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get services
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">NAME</th>
+<th style="text-align:left">TYPE</th>
+<th style="text-align:left">CLUSTER-IP</th>
+<th style="text-align:left">EXTERNAL-IP</th>
+<th style="text-align:left">PORTS</th>
+<th style="text-align:left">AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">weight-tracker-service</td>
+<td style="text-align:left">ClusterIP</td>
+<td style="text-align:left">10.152.183.174</td>
+<td style="text-align:left"><!-- raw HTML omitted --></td>
+<td style="text-align:left">80/tcp</td>
+<td style="text-align:left">20s</td>
+</tr>
+</tbody>
+</table>
+<p>So, we&rsquo;ve created a service of type <code>ClusterIP</code>, this means that this service is only available within the cluster and not externally.
+We can check if we can reach our application by trying.</p>
+<pre tabindex="0"><code>curl 10.152.183.174
+</code></pre><p>The output will be the homepage of our application</p>
+<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+
+.....
+</code></pre><p>There are other service types such as <code>NodePort</code> which creates a static port on each of your nodes to allow for external communication, so in the scenario we could access the service via the raspberry pis <code>IP</code> address + the <code>port</code> number.</p>
+<p>So we&rsquo;ve got our service running, now we&rsquo;d like to connect to this service externally via  http such as <code>http://weight-tracker.development.local</code></p>
+<h4 id="ingress">
+  Ingress
+  <a class="heading-link" href="#ingress">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>We&rsquo;ll be using <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/"  class="external-link" target="_blank" rel="noopener">Ingress</a> object to manage external access.
+This comes as an addon in microk8s, so we have to install it first.</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; microk8s enable ingress
+</code></pre><p>This will essentially create an ingress controller which will allow nginx to act as a reverse proxy and connect us to our <code>weight-tracker-service</code></p>
+<p>So lets create an ingress file to allow accces to our <code>weight-tracker-service</code></p>
+<p>Lets first setup a dns name for our application, we can do this on a <a href="https://pi-hole.net/"  class="external-link" target="_blank" rel="noopener">PiHole</a>.
+We&rsquo;ll call it <code>weight-tracker.development.local</code> this will point to the ip of our <code>development.local</code> server.</p>
+<p>On the Pihole, it will look something like this</p>
+<p><img src="/dns.png" alt="screenshot"></p>
+<p>Ok. lets create our ingress file <code>ingress.yaml</code>.</p>
+<pre tabindex="0"><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weight-tracker-ingress
+spec:
+  rules:
+    - host: weight-tracker.development.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: weight-tracker-service
+                port:
+                  number: 80
+</code></pre><p>So ingress will listen to all requests coming into <code>http://weight-tracker.development.local</code> and route the traffic to the appropriate service defined in <code>backend.service</code> on <code>port.number=80</code></p>
+<p>Ok, lets apply this component and check that its working</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl apply -f ingress.yaml
+</code></pre><p>We can see the status of this deployment by running</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; kubectl get ingress
+</code></pre><table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>CLASS</th>
+<th>HOSTS</th>
+<th>ADDRESS</th>
+<th>PORTS</th>
+<th>AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>weight-tracker-ingress</td>
+<td>public</td>
+<td>weight-tracker.development.local</td>
+<td>127.0.0.1</td>
+<td>80</td>
+<td>20s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="deployed">
+  Deployed
+  <a class="heading-link" href="#deployed">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h4>
+<p>So when we try to access our weight tracking application via <code>http://weight-tracker.development.local</code> we should get presented with our application</p>
+<p>show screenshot here.</p>
+<p>So we have managed to deploy our rust application to Microk8s, in the next section we&rsquo;ll be deploying a django backend application with a vuejs frontend.</p>
+<p>In <a href="./deploy_microk8s_part2.md" >Part 2</a> we are going to deploy a FastApi and Vuejs application.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Menzi Mthembu 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

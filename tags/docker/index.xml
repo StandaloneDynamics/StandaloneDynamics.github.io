@@ -13,7 +13,7 @@
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/</guid>
-      <description>Introduction In this guide we&amp;rsquo;ll be going through the steps of setting up a Microk8 instance and deploying some applications to it. The aim is to get an better understanding of Kubernetes and figuring out what&amp;rsquo;s involved in getting applications running. Microk8s is a lightweight version of Kubernetes meant to run on smaller devices such as raspberry pis&amp;rsquo;. It also comes with addons which allow you to add features as needed.</description>
+      <description>Introduction Link to heading In this guide we&amp;rsquo;ll be going through the steps of setting up a Microk8 instance and deploying some applications to it. The aim is to get an better understanding of Kubernetes and figuring out what&amp;rsquo;s involved in getting applications running. Microk8s is a lightweight version of Kubernetes meant to run on smaller devices such as raspberry pis&amp;rsquo;. It also comes with addons which allow you to add features as needed.</description>
     </item>
     
     <item>
@@ -22,11 +22,10 @@
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_2/</guid>
-      <description>FastAPI + VueJS In Part 1 of this guide, we setup a Microk8s instance and deployed a rust web application. In part 2, we are going to deploy a web application that has a separate frontend and backend and see how they can communicate with one another.
+      <description>FastAPI + VueJS Link to heading In Part 1 of this guide, we setup a Microk8s instance and deployed a rust web application. In part 2, we are going to deploy a web application that has a separate frontend and backend and see how they can communicate with one another.
 The backend uses the FastAPI framework.
 The frontend uses the Vuejs.
-Docker Backend Image The backend application consists of just 2 endpoints.
-Here is how the DockerFile looks like.</description>
+Docker Link to heading Backend Image Link to heading The backend application consists of just 2 endpoints.</description>
     </item>
     
   </channel>
