@@ -12,9 +12,9 @@ author = "Menzi Mthembu"
 [params]
 author = "Menzi Mthembu"
 intro = "Software Developer"
-avatarurl = "headshot.png"
+avatarurl = "headshot.jpg"
 dateformat = "Jan 2, 2006"
-info = "Software Developer"
+info = "Software Engineer"
 colorScheme = "dark"
 
 
@@ -31,7 +31,7 @@ description = "Standalone Dynamics"
 keywords = "developer,software,python,django,rust,web,gtk"
 
 [params.extra]
-copyright = "© 2023. Menzi Mthembu. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
+copyright = "© 2025. Standalone Dynamics. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
 toc = true
 
 
