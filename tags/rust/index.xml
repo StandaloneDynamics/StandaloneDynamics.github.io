@@ -2,19 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rust on Standalone Dynamics</title>
-    <link>https://www.standalonedynamics.co.za/tags/rust/</link>
+    <link>http://localhost:1313/tags/rust/</link>
     <description>Recent content in Rust on Standalone Dynamics</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.standalonedynamics.co.za/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Deploying Apps to Microk8s on a Raspberry Pi - Part 1</title>
-      <link>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/</link>
+      <title>Personal Projects</title>
+      <link>http://localhost:1313/projects/</link>
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/</guid>
-      <description>Introduction Link to heading In this guide we&amp;rsquo;ll be going through the steps of setting up a Microk8 instance and deploying some applications to it. The aim is to get an better understanding of Kubernetes and figuring out what&amp;rsquo;s involved in getting applications running. Microk8s is a lightweight version of Kubernetes meant to run on smaller devices such as raspberry pis&amp;rsquo;. It also comes with addons which allow you to add features as needed.</description>
+      <guid>http://localhost:1313/projects/</guid>
+      <description>&lt;h2 id=&#34;django-qoqa&#34;&gt;&#xA;  &lt;a href=&#34;https://github.com/knightebsuku/python3-django-qoqa&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Django Qoqa&lt;/a&gt;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#django-qoqa&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Qoqa was an experiment to check if it was possible to setup django projects and prepare them to be packaged as debian packages, thereby installing a full django project via &lt;code&gt;sudo apt &amp;lt;django project&amp;gt;&lt;/code&gt;.&#xA;A full description of the project can be found in the repo Readme.&lt;/p&gt;&#xA;&lt;h2 id=&#34;django-sqlconsole&#34;&gt;&#xA;  &lt;a href=&#34;https://github.com/StandaloneDynamics/django-sqlconsole&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Django SqlConsole&lt;/a&gt;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#django-sqlconsole&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Sqlconsole is a django app that allows for the execution of sql queries from the admin section of a django site. An appropriate use case is when you don&amp;rsquo;t have access to the database especially in a production environment.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

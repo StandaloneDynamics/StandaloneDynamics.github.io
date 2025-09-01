@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Technical Debt And Project Management · Standalone Dynamics
 </title>
@@ -13,35 +13,56 @@
 
 
 <meta name="author" content="Menzi Mthembu">
-<meta name="description" content="Introduction Link to heading I&rsquo;ve been working on an experimental project and as I was working through it, I started saying things like, &ldquo;I need to come back to this later&rdquo; or adding TODOs all over the place, even though I&rsquo;m not planning on taking the project further it really got me thinking about technical debt in software why it&rsquo;s not addressed sooner.
-I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software developer for 10&#43; years and have joined projects that are in various stages.">
+<meta name="description" content="
+  Introduction
+  
+    
+    Link to heading
+  
+
+I&rsquo;ve been working on an experimental project and as I was working through it, I started saying things like, &ldquo;I need to come back to this later&rdquo; or adding TODOs all over the place, even though I&rsquo;m not planning on taking the project further it really got me thinking about technical debt in software why it&rsquo;s not addressed sooner.
+
+  I&rsquo;ve Seen This Movie
+  
+    
+    Link to heading
+  
+
+I&rsquo;ve been working as a software developer for 10&#43; years and have joined projects that are in various stages. One thing that always pops up is developers mentioning that they need some time to clean things up but that there is never time to actually do so.">
 <meta name="keywords" content="">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Technical Debt And Project Management"/>
-<meta name="twitter:description" content="Introduction Link to heading I&rsquo;ve been working on an experimental project and as I was working through it, I started saying things like, &ldquo;I need to come back to this later&rdquo; or adding TODOs all over the place, even though I&rsquo;m not planning on taking the project further it really got me thinking about technical debt in software why it&rsquo;s not addressed sooner.
-I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software developer for 10&#43; years and have joined projects that are in various stages."/>
-
-<meta property="og:title" content="Technical Debt And Project Management" />
-<meta property="og:description" content="Introduction Link to heading I&rsquo;ve been working on an experimental project and as I was working through it, I started saying things like, &ldquo;I need to come back to this later&rdquo; or adding TODOs all over the place, even though I&rsquo;m not planning on taking the project further it really got me thinking about technical debt in software why it&rsquo;s not addressed sooner.
-I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software developer for 10&#43; years and have joined projects that are in various stages." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.standalonedynamics.co.za/blog/technical_debt/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2025-06-15T18:26:02+02:00" />
-<meta property="article:modified_time" content="2025-06-15T18:26:02+02:00" />
 
 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Technical Debt And Project Management">
+  <meta name="twitter:description" content="Introduction Link to heading I’ve been working on an experimental project and as I was working through it, I started saying things like, “I need to come back to this later” or adding TODOs all over the place, even though I’m not planning on taking the project further it really got me thinking about technical debt in software why it’s not addressed sooner.
+I’ve Seen This Movie Link to heading I’ve been working as a software developer for 10&#43; years and have joined projects that are in various stages. One thing that always pops up is developers mentioning that they need some time to clean things up but that there is never time to actually do so.">
+
+<meta property="og:url" content="http://localhost:1313/blog/technical_debt/">
+  <meta property="og:site_name" content="Standalone Dynamics">
+  <meta property="og:title" content="Technical Debt And Project Management">
+  <meta property="og:description" content="Introduction Link to heading I’ve been working on an experimental project and as I was working through it, I started saying things like, “I need to come back to this later” or adding TODOs all over the place, even though I’m not planning on taking the project further it really got me thinking about technical debt in software why it’s not addressed sooner.
+I’ve Seen This Movie Link to heading I’ve been working as a software developer for 10&#43; years and have joined projects that are in various stages. One thing that always pops up is developers mentioning that they need some time to clean things up but that there is never time to actually do so.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-06-15T18:26:02+02:00">
+    <meta property="article:modified_time" content="2025-06-15T18:26:02+02:00">
 
 
-<link rel="canonical" href="https://www.standalonedynamics.co.za/blog/technical_debt/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="http://localhost:1313/blog/technical_debt/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.e1bdf152d93b060b06ba5d496486ed9c201a8b95d335e035beb5faebe3b61cad.css" integrity="sha256-4b3xUtk7BgsGul1JZIbtnCAai5XTNeA1vrX66&#43;O2HK0=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -51,7 +72,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -86,11 +107,11 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 
 
 
-<body class="preload-transitions colorscheme-dark">
+<body class="preload-transitions colorscheme-auto">
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -98,31 +119,33 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Standalone Dynamics
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/about">About</a>
+              <a class="navigation-link " href="/blog">Blog</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/blog">Blog</a>
+              <a class="navigation-link " href="/projects">Projects</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/projects">Projects</a>
+              <a class="navigation-link " href="/guides">Mini Guides</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/guides">Mini Guides</a>
+              <a class="navigation-link " href="/about">About</a>
             </li>
           
         
@@ -139,7 +162,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="https://www.standalonedynamics.co.za/blog/technical_debt/">
+        <a class="title-link" href="http://localhost:1313/blog/technical_debt/">
           Technical Debt And Project Management
         </a>
       </h1>
@@ -148,7 +171,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
     <h2 id="introduction">
   Introduction
   <a class="heading-link" href="#introduction">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -156,7 +179,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 <h2 id="ive-seen-this-movie">
   I&rsquo;ve Seen This Movie
   <a class="heading-link" href="#ive-seen-this-movie">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -167,7 +190,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 <h2 id="consequences">
   Consequences
   <a class="heading-link" href="#consequences">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -176,7 +199,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 <h2 id="what-can-be-done">
   What can be done
   <a class="heading-link" href="#what-can-be-done">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -188,7 +211,7 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 <h2 id="when-should-maintenance-occur">
   When Should Maintenance Occur
   <a class="heading-link" href="#when-should-maintenance-occur">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
@@ -211,6 +234,9 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
      Menzi Mthembu 
     ·
     
+      Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY-SA-4.0</a>
+    ·
+    
     Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
     
   </section>
@@ -222,13 +248,17 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   
 
   
 
+
+  
+
+  
 
   
 
@@ -260,5 +290,4 @@ I&rsquo;ve Seen This Movie Link to heading I&rsquo;ve been working as a software
 
   
 </body>
-
 </html>

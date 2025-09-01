@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <title>Blogs · Standalone Dynamics</title>
+  <title>
+  Adding Extra Info on Plotly Charts on Hover · Standalone Dynamics
+</title>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
@@ -11,24 +13,31 @@
 
 
 <meta name="author" content="Menzi Mthembu">
-<meta name="description" content="">
+<meta name="description" content="showing percentages on hover in plotly">
 <meta name="keywords" content="">
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Blogs">
+  <meta name="twitter:title" content="Adding Extra Info on Plotly Charts on Hover">
+  <meta name="twitter:description" content="showing percentages on hover in plotly">
 
-<meta property="og:url" content="http://localhost:1313/blog/">
+<meta property="og:url" content="http://localhost:1313/blog/plotly_percentage/">
   <meta property="og:site_name" content="Standalone Dynamics">
-  <meta property="og:title" content="Blogs">
+  <meta property="og:title" content="Adding Extra Info on Plotly Charts on Hover">
+  <meta property="og:description" content="showing percentages on hover in plotly">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-05-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-01T00:00:00+00:00">
+    <meta property="article:tag" content="Visualization">
+    <meta property="article:tag" content="Javascript">
 
 
 
 
-<link rel="canonical" href="http://localhost:1313/blog/">
+<link rel="canonical" href="http://localhost:1313/blog/plotly_percentage/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -69,7 +78,6 @@
 <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="Standalone Dynamics" />
 
 
 
@@ -135,45 +143,50 @@
 
     <div class="content">
       
-  <section class="container list">
-  <header>
-    <h1 class="title">
-      <a class="title-link" href="http://localhost:1313/blog/">Blogs</a>
-    </h1>
-  </header>
-  
-  <ul>
-    
-    <li>
-      <span class="date">Jun 15, 2025</span>
-      <a class="title" href="/blog/technical_debt/">Technical Debt And Project Management</a>
-    </li>
-    
-    <li>
-      <span class="date">Dec 29, 2023</span>
-      <a class="title" href="/blog/django_reuseable_app/">Testing A Reusable Django App</a>
-    </li>
-    
-    <li>
-      <span class="date">May 1, 2020</span>
-      <a class="title" href="/blog/plotly_percentage/">Adding Extra Info on Plotly Charts on Hover</a>
-    </li>
-    
-    <li>
-      <span class="date">Mar 4, 2020</span>
-      <a class="title" href="/blog/django_debian_package/">Concept - Django project as a debian package</a>
-    </li>
-    
-  </ul>
-  
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/blog/plotly_percentage/">
+          Adding Extra Info on Plotly Charts on Hover
+        </a>
+      </h1>
+    </header>
 
+    <p><a href="https://plotly.com/javascript/"  class="external-link" target="_blank" rel="noopener">Plotly</a> is my goto library when it&rsquo;s time to create visualizations. Its a very easy to use high level library with an array of customization&rsquo;s.</p>
+<p>Creating a chart is as simple as</p>
+<pre tabindex="0"><code>var data = [
+	{
+	    x: [1,2,3,4,5,6,7,8,9],
+	    y: [1,2,4,6,8,10,12,14,16,18],
+	    type:&#39;bar&#39;
+	}
+    ];
+    Plotly.newPlot(&#39;myDiv&#39;,data);
+</code></pre><p>where <code>myDiv</code> is the id of the HTML element you want the chart to be inserted in.</p>
+<p>Giving us a very nice looking bar chart.</p>
+<p><img src="/bar_1.png" alt="dash plot"></p>
+<p>By default when you hover over a bar you will see its Y value on the bar. I needed to add a feature where the total amount + percentage needed to be shown, the amount also had to be prepended with a currency symbol (R).</p>
+<p>Plotly has a number of <a href="https://plotly.com/javascript/plotly-fundamentals/"  class="external-link" target="_blank" rel="noopener">configuration</a> options. There are various was of going about this. To satisfy both requirements, <code>hovertemplate</code> will do the job for us.</p>
+<pre tabindex="0"><code>var data = [
+	{
+	    x: [1,2,3,4,5,6,7,8,9,.....],
+	    y: [1,2,4,6,8,10,12,......],
+	    type:&#39;bar&#39;,
+		text: [&#34;1&#34;, &#34;12&#34;, &#34;13&#34;,....],
+		hovertemplate:&#39;&lt;i&gt;R&lt;/i&gt; %{y}&lt;br&gt;&#39; +&#39;%{text}%&#39; 
+	}
+    ];
+    Plotly.newPlot(&#39;myDiv&#39;,data);
+</code></pre><p>So the text field, which is our percentage values, adds additional text to the hover text, but we also needed to add the currency symbol as well, so the template configuration would do the trick for us.</p>
+<p><img src="/bar.png" alt="dash plot">
+<img src="/bar_2.png" alt="dash plot"></p>
+<p>nice.</p>
 
-
-
-
-
+  </article>
 </section>
 
+  
 
     </div>
 
