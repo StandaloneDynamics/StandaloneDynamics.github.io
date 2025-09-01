@@ -1,7 +1,7 @@
 ---
 title: "Adding Extra Info on Plotly Charts on Hover"
 date: "2020-05-01"
-draft: true
+draft: false
 description: "showing percentages on hover in plotly"
 tags: ["visualization", "javascript"]
 ---

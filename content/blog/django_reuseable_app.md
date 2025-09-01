@@ -1,7 +1,7 @@
 ---
 title: "Testing A Reusable Django App"
 date: 2023-12-29
-draft: true
+draft: false
 description: Testing a reusable app outside of a Django project
 tags: ["django", "rest-framework", "python"]
 ---

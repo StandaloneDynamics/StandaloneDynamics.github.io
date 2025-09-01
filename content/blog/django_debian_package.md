@@ -3,7 +3,7 @@ title: "Concept - Django project as a debian package"
 date: "2020-03-04"
 description: "packaging simple django projects as a debian package"
 tags: ["debian", "django", "python"]
-draft: true
+draft: false
 ---
 
 # Concept - Django project as a debian package

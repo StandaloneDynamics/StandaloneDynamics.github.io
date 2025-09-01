@@ -3,6 +3,7 @@ title: "Deploying Apps to Microk8s on a Raspberry Pi - Part 2"
 date: "2024-01-20"
 description: "Deploying Apps to Microk8s on a Raspberry Pi"
 tags: ["Microk8s", "Docker", "Kubernetes", "Raspberry Pi"]
+draft: true
 ---
 
 

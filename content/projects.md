@@ -2,7 +2,7 @@
 title: "Personal Projects"
 date: "2024-01-20"
 tags: ["python", "rust"]
-draft: true
+draft: false
 ---
 
 ## [Django Qoqa](https://github.com/knightebsuku/python3-django-qoqa)
