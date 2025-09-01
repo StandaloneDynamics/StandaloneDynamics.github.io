@@ -2,55 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.standalonedynamics.co.za/blog/</loc>
-    <lastmod>2025-06-15T18:26:02+02:00</lastmod>
+    <loc>//localhost:1313/</loc>
   </url><url>
-    <loc>https://www.standalonedynamics.co.za/</loc>
-    <lastmod>2025-06-15T18:26:02+02:00</lastmod>
+    <loc>//localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://www.standalonedynamics.co.za/blog/technical_debt/</loc>
-    <lastmod>2025-06-15T18:26:02+02:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/guides/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_1/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/guides/deploy_microk8s_part_2/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/docker/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/kubernetes/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/microk8s/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/raspberry-pi/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/rust/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/</loc>
-    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/django/</loc>
-    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/blog/django_api_homepage/</loc>
-    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/python/</loc>
-    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/tags/rest-framework/</loc>
-    <lastmod>2020-11-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.standalonedynamics.co.za/categories/</loc>
+    <loc>//localhost:1313/tags/</loc>
   </url>
 </urlset>

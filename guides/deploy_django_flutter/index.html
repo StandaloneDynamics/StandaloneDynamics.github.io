@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Serving Flutter Web Application With Django · Standalone Dynamics
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Menzi Mthembu">
+<meta name="description" content="Getting Django to serve flutter applications">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Serving Flutter Web Application With Django">
+  <meta name="twitter:description" content="Getting Django to serve flutter applications">
+
+<meta property="og:url" content="http://localhost:1313/guides/deploy_django_flutter/">
+  <meta property="og:site_name" content="Standalone Dynamics">
+  <meta property="og:title" content="Serving Flutter Web Application With Django">
+  <meta property="og:description" content="Getting Django to serve flutter applications">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="guides">
+    <meta property="article:published_time" content="2024-01-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-01-28T00:00:00+00:00">
+    <meta property="article:tag" content="Django">
+    <meta property="article:tag" content="Flutter">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Dart">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/guides/deploy_django_flutter/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Standalone Dynamics
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/guides">Mini Guides</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/guides/deploy_django_flutter/">
+              Serving Flutter Web Application With Django
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2024-01-28T00:00:00Z">
+                Jan 28, 2024
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              4-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/django/">Django</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/flutter/">Flutter</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/python/">Python</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/dart/">Dart</a>
+    </span></div>
+
+        </div>
+      </header>
+      <aside><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#directory-structure">Directory Structure</a></li>
+        <li><a href="#django">Django</a></li>
+        <li><a href="#flutter">Flutter</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#index-file">Index file</a></li>
+    <li><a href="#serving-flutter-static-files">Serving Flutter Static Files</a>
+      <ul>
+        <li><a href="#django-serve">Django Serve</a></li>
+        <li><a href="#whitenoise">Whitenoise</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></aside>
+
+      <div class="post-content">
+        
+        <h1 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>I was recently playing with around with <a href="https://flutter.dev/multi-platform/web"  class="external-link" target="_blank" rel="noopener">Flutter web</a> and was wondering how I would go about getting it to work with <a href="https://www.djangoproject.com/"  class="external-link" target="_blank" rel="noopener">Django</a> and deploying them together.
+The application I decided to test this with is a kanban type application, so flutter would be used to build the frontend UI and Django would provide the REST API.</p>
+<h1 id="development">
+  Development
+  <a class="heading-link" href="#development">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h3 id="directory-structure">
+  Directory Structure
+  <a class="heading-link" href="#directory-structure">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Our project directory structure will looks very similar to the traditional Django project structure.</p>
+<pre tabindex="0"><code>kanban/
+  db.sqlite3
+  apps/
+  kanban/
+  manage.py
+  flutter/
+    build/
+	  web/
+    pubspec.yaml
+    ....
+</code></pre><p>So as you can see we have placed the flutter project within the Django project.</p>
+<h3 id="django">
+  Django
+  <a class="heading-link" href="#django">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>For the REST API, I used <a href="https://www.django-rest-framework.org/"  class="external-link" target="_blank" rel="noopener">Django Rest Framework</a>, so I had endpoints such as</p>
+<pre tabindex="0"><code>http://localhost:8000/api/v1/projects
+http://localhost:8000/api/v1/tasks
+</code></pre><p>If you have used django the <code>urls.py</code> file would look as follows</p>
+<pre tabindex="0"><code>urlpatterns = [
+	path(&#39;api/v1/&#39;, include(router.urls)),
+]
+</code></pre><p>where <code>router.urls</code> would be the <code>ViewSets</code> for the project and task models.</p>
+<p>So once that was running this could be served via the usual <code>./manage.py runserver</code></p>
+<h3 id="flutter">
+  Flutter
+  <a class="heading-link" href="#flutter">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The frontend side is a single page application which closely resembles developing a mobile application in flutter. To run the web application during development</p>
+<pre tabindex="0"><code>flutter run -d web-server --web-port=9090
+</code></pre><p>and any changes made will be hot reloaded automatically.</p>
+<h1 id="integrating-with-django">
+  Integrating with Django.
+  <a class="heading-link" href="#integrating-with-django">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>Once our frontend is built, we can build it via</p>
+<pre tabindex="0"><code>flutter build web --release
+</code></pre><p>This will build the flutter application with all the required <code>javascript</code>,<code>icons</code> and any <code>assert</code> files and placed in the  <code>build/web</code> directory which will look similar to the below</p>
+<pre tabindex="0"><code>flutter/
+  ...
+  build/
+    web/
+      assets/
+      flutter.js
+      flutter_service_worker.js
+      index.html
+	  ....
+</code></pre><p>During the development we were essentially running 2 services.</p>
+<pre tabindex="0"><code>./manage.py runserver
+</code></pre><p>and</p>
+<pre tabindex="0"><code>flutter run -d web-server --web-port=9090
+</code></pre><p>Now we just want the entire application to be served by Django.</p>
+<h2 id="index-file">
+  Index file
+  <a class="heading-link" href="#index-file">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>We can tell Django about the index file by creating a template view and treating the <code>index.html</code> file as a template.
+We need to first add the file path of <code>flutter/build/web</code> to the Django templates settings</p>
+<pre tabindex="0"><code>FLUTTER_DIR = BASE_DIR / &#39;flutter/build/web&#39;
+TEMPLATES = [
+    ...
+	DIRS: [FLUTTER_DIR]
+	...
+]
+</code></pre><p>We can create a template view in our apps <code>views.py</code> file</p>
+<pre tabindex="0"><code>class IndexView(TemplateView):
+    template_name=&#39;index.html&#39;
+</code></pre><p>And add it to our <code>urls.py</code> file</p>
+<pre tabindex="0"><code>path(&#34;web/&#34;, IndexView.as_view()),
+</code></pre><p>If we browse to <code>http://localhost:8000/web</code> we&rsquo;ll be presented with a blank page. This due to the fact that all the static assets(css,js) are relative to the index file and don&rsquo;t follow the Django&rsquo;s way of specifying static files.</p>
+<p>So now we need a way to serve this files. We could go in a modify the <code>index.html</code> file and change the urls to <code>{% static .... %}</code> but then we would need to do that each time we rebuild flutter, we are trying to avoid that path.</p>
+<h2 id="serving-flutter-static-files">
+  Serving Flutter Static Files
+  <a class="heading-link" href="#serving-flutter-static-files">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="django-serve">
+  Django Serve
+  <a class="heading-link" href="#django-serve">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>There&rsquo;s a quick way to serve the static files from the flutter application.
+We can modify our <code>index.html</code> file and change <code>&lt;base href=/&gt;</code> to <code>&lt;base href=&quot;/web/&gt;</code>, what this html tag does is, it sets the base url for all relative paths in the <code>index.html</code> file, so <code>/file.js</code> would become <code>/web/file.js</code>.</p>
+<p>You might notice that if we rebuild flutter we&rsquo;d have to do this again, luckily for us flutter has got a build flag we can use <code>--base-href</code>, so now to build our flutter app</p>
+<pre tabindex="0"><code>flutter build web --release --base-href /web/
+</code></pre><p>Which will change the <code>&lt;base href=&gt;</code> to the appropriate value.</p>
+<p>With this change we can serve this file in Django by matching the appropriate url and serving the static files, in <code>urls.py</code></p>
+<pre tabindex="0"><code>path(&#34;web/&lt;path:resource&gt;&#39;, serve_flutter),
+</code></pre><p>The <code>serve_flutter</code> function will then serve the file at that url resource.</p>
+<pre tabindex="0"><code>from django.views.static import serve
+
+def serve_flutter(request, resource):
+    return serve(request, resource, settings.FLUTTER_DIR)
+</code></pre><p>The issue with this is that the <code>serve</code> function is only meant to be used for development purposes and not production, we need to find a better way.</p>
+<h3 id="whitenoise">
+  Whitenoise
+  <a class="heading-link" href="#whitenoise">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Whitenoise is a library that allows a python web application to serve its own static files with out the need of an external service like nginx.</p>
+<p>Since our application is essentially a single page app, all we need to do is to tell whitenoise where all the files for this app are.
+Whitenoise has a configuration called <code>WHITENOISE_ROOT</code>, which will help us in this case,  in our <code>settings.py</code> file lets add</p>
+<pre tabindex="0"><code>WHITENOISE_ROOT = FLUTTER_DIR
+</code></pre><p>And that&rsquo;s it, with this in place whitenoise will be able to find and serve all the files from our flutter application.</p>
+<p>So now, if we go back and try accessing <code>http://localhost:8000/web</code> out flutter application will be visible.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Menzi Mthembu 
+    ·
+    
+      Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
