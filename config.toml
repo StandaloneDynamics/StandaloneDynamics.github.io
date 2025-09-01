@@ -1,66 +1,57 @@
 baseURL = "https://www.standalonedynamics.co.za/"
-languageCode = "en-us"
+languageCode = "en"
+defaultContentLanguage = "en"
 title = "Standalone Dynamics"
 theme = "hugo-coder"
 
-contentdir = "content"
-layoutdir = "layouts"
-publishdir = "public"
-
-author = "Menzi Mthembu"
+contentDir = "content"
+layoutDir = "layouts"
+publishDir = "public"
 
 [params]
 author = "Menzi Mthembu"
-intro = "Software Developer"
 avatarurl = "headshot.jpg"
 dateformat = "Jan 2, 2006"
 info = "Software Engineer"
-colorScheme = "dark"
+colorScheme = "auto"
+license = '<a href="http://creativecommons.org/licenses/by/3.0/">CC BY-SA-4.0</a>'
 
 
 
 [[params.social]]
-    name = "Github"
-    icon = "fab fa-github fa-2x"
-    weight = 1
-    url = "https://github.com/StandaloneDynamics"
+name = "Github"
+icon = "fa-brands fa-github fa-2x"
+weight = 2
+url = "https://github.com/StandaloneDynamics"
 
 
-[params.meta]
-description = "Standalone Dynamics"
-keywords = "developer,software,python,django,rust,web,gtk"
+[[params.social]]
+name = "Twitter"
+icon = "fa-brands fa-twitter fa-2x"
+weight = 1
+url = "https://x.com/StandaloneDyn"
 
-[params.extra]
-copyright = "© 2025. Standalone Dynamics. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
-toc = true
-
-
-[markup]
-  [markup.tableOfContents]
-    endLevel = 5
-    ordered = false
-    startLevel = 1
 
 
 [[menu.main]]
-    name="Blog"
-    weight=200
-    identifier="blog"
-    url="/blog"
+ name="Blog"
+ weight=1
+ identifier="blog"
+  url="/blog"
 [[menu.main]]
-    name="About"
-    identifier="about"
-    weight=100
-    url="/about"
+  name="About"
+  identifier="about"
+  weight=4
+  url="/about"
 [[menu.main]]
-    name="Projects"
-    identifier="projects"
-    weight=300
-    url="/projects"
+  name="Projects"
+  identifier="projects"
+  weight=2
+  url="/projects"
 [[menu.main]]
-    name="Mini Guides"
-    identifier="guides"
-    weight=400
-    url="/guides"
+  name="Mini Guides"
+  identifier="guides"
+  weight=3
+  url="/guides"
 
 
