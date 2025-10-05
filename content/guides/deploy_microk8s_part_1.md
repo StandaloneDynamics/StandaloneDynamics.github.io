@@ -3,12 +3,12 @@ title: "Deploying Apps to Microk8s on a Raspberry Pi - Part 1"
 date: "2024-01-20"
 description: "Deploying Apps to Microk8s on a Raspberry Pi"
 tags: ["Microk8s", "Docker", "Kubernetes", "Raspberry Pi", "Rust"]
-draft: true
+draft: false
 ---
 
 # Introduction
 
-In this guide we'll be going through the steps of setting up a [Microk8](https://microk8s.io/) instance and deploying some applications to it. The aim is to get an better understanding of [Kubernetes](https://kubernetes.io/) and figuring out what's involved in getting applications running.
+In this guide we'll be going through the steps of setting up a [Microk8](https://microk8s.io/) instance and deploying some applications to it. The aim is to get an better understanding of [Kubernetes](https://kubernetes.io/) and figuring out what's involved in getting applications running on it.
 Microk8s is a lightweight version of Kubernetes meant to run on smaller devices such as raspberry pis'. It also comes with addons which allow you to add features as needed.
 
 This guide will be broken into 2 parts
@@ -17,7 +17,7 @@ This guide will be broken into 2 parts
 
 * [Part 2](../deploy_microk8s_part_2), we will deploy an application which has a seprate backend and frontend. The backend will be using [FastApi](https://fastapi.tiangolo.com/) while the frontend will be [Vue](https://vuejs.org/) based.
 
-In each of the deployments we will come accross various of kubernetes which will help us learn more about it. 
+In each of the deployments we will come accross various services of kubernetes which will help us learn more about it. 
 
 
 Creating the applications is not the focus of this guide, just the setup of the Microk8 instance and the configurations needed to deploy them.
