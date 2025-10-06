@@ -1,9 +1,15 @@
 ---
-title: "Personal Projects"
+title: "Projects"
 date: "2024-01-20"
-tags: ["python", "rust"]
+tags: ["python", "rust", "django"]
 draft: false
 ---
+
+## [Amalisidi](https://amalisidi.com/)
+
+A simple, smart platform for managing your personal and small business expenses.
+Upload and organize invoices, receipts, and CSV files, categorize transactions, schedule recurring expenses, and access everything through an easy-to-use dashboard or API.
+
 
 ## [Django Qoqa](https://github.com/knightebsuku/python3-django-qoqa)
 
