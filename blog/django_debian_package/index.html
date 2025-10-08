@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Concept - Django project as a debian package · Standalone Dynamics
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Menzi Mthembu">
+<meta name="description" content="packaging simple django projects as a debian package">
+<meta name="keywords" content="">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Concept - Django project as a debian package">
+  <meta name="twitter:description" content="packaging simple django projects as a debian package">
+
+<meta property="og:url" content="https://www.standalonedynamics.co.za/blog/django_debian_package/">
+  <meta property="og:site_name" content="Standalone Dynamics">
+  <meta property="og:title" content="Concept - Django project as a debian package">
+  <meta property="og:description" content="packaging simple django projects as a debian package">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2020-03-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-03-04T00:00:00+00:00">
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Django">
+    <meta property="article:tag" content="Python">
+
+
+
+
+<link rel="canonical" href="https://www.standalonedynamics.co.za/blog/django_debian_package/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.ebdf1a5dca6a69142e979b32668c69f2a95448b145a168104c5808b14d2b75b0.css" integrity="sha256-698aXcpqaRQul5syZoxp8qlUSLFFoWgQTFgIsU0rdbA=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://www.standalonedynamics.co.za/">
+      Standalone Dynamics
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/guides">Mini Guides</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://www.standalonedynamics.co.za/blog/django_debian_package/">
+          Concept - Django project as a debian package
+        </a>
+      </h1>
+    </header>
+
+    <h1 id="concept---django-project-as-a-debian-package">
+  Concept - Django project as a debian package
+  <a class="heading-link" href="#concept---django-project-as-a-debian-package">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>For the past couple of months I&rsquo;ve been pondering whether it would be possible to package a full django project as debian package (.deb).</p>
+<p>Now and then I tend to write small web applications that run on my machine and use the SQLite database. On one occasion somebody asked if they could run the application on their machine.</p>
+<p>These small web applications tend to just use Django, Django Rest Framework, JavaScript(eg: jquery) and a CSS framework that does not need to be customised or built and on some occasions a background task like celery.</p>
+<p>One other factor is that these web applications don&rsquo;t get many updates. Once I&rsquo;ve built a web application for a specific purpose it tends to stay that way for a long time.</p>
+<p>Is there really need for docker in these cases, I don&rsquo;t really think so.</p>
+<p>Why cant I just install these apps as</p>
+<pre tabindex="0"><code>sudo apt install &lt;web-application&gt;
+</code></pre><p>and leave it alone.</p>
+<p>Lots of work has been done in this space eg:</p>
+<ul>
+<li><a href="https://hynek.me/articles/python-app-deployment-with-native-packages/"  class="external-link" target="_blank" rel="noopener">Python Application Deployment with Native Packages</a></li>
+</ul>
+<p>but I&rsquo;m looking for much more narrowly scoped approach.</p>
+<h2 id="what-steps-should-be-required">
+  What steps should be required?
+  <a class="heading-link" href="#what-steps-should-be-required">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>command-line to ask basic setup questions.</p>
+<p>** Which django version</p>
+<p>** Which database (PostgreSQL/SQLite)</p>
+<p>** Install certain python packages (Django,whitenoise etc)</p>
+</li>
+<li>
+<p>Setup a virtual enviroment.</p>
+</li>
+<li>
+<p>Its should create a configuration file for development and production.</p>
+</li>
+<li>
+<p>When building it should collect all static files.</p>
+</li>
+<li>
+<p>Keep version history of web application during each build.</p>
+</li>
+<li>
+<p>configure the start/stop scripts (eg: gunicorn)</p>
+</li>
+<li>
+<p>generate a requirements file</p>
+</li>
+<li>
+<p>Turn the django project into a python package.</p>
+</li>
+</ul>
+<h2 id="what-tools-are-already-available">
+  What tools are already available?
+  <a class="heading-link" href="#what-tools-are-already-available">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The developers at spotify have really tackled the build problem very well, they have an application called <a href="https://github.com/spotify/dh-virtualenv"  class="external-link" target="_blank" rel="noopener">dh-virtualenv</a> which will do all the heavy lifting for us already, this will help is in building the debian package.</p>
+<p>The django <code>settings.py</code> file can be <a href="https://docs.djangoproject.com/en/2.2/ref/django-admin/#cmdoption-startproject-template"  class="external-link" target="_blank" rel="noopener">configured</a> when starting a new project, did not know this was possible until I started the research. Django Documentation really has everything that you need.</p>
+<p>This will allow us to integrate a <code>.cfg</code> file for all our projects variables.</p>
+<h2 id="what-it-wont-do">
+  What it wont do?
+  <a class="heading-link" href="#what-it-wont-do">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ul>
+<li>
+<p>fiddle around with default django project structure.</p>
+</li>
+<li>
+<p>change static and media files.</p>
+</li>
+<li>
+<p>build assets (js,css) and such steps.</p>
+</li>
+<li>
+<p>Its not meant to be an alternative to <a href="https://github.com/pydanny/cookiecutter-django"  class="external-link" target="_blank" rel="noopener">cookiecutter-django</a>. django-qoqa is very narrowly scoped for the really simple projects.</p>
+</li>
+</ul>
+<h2 id="how-will-it-run">
+  How will it run?
+  <a class="heading-link" href="#how-will-it-run">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Once build the project should be be managed by systemd, should be easy as</p>
+<pre tabindex="0"><code>systemctl start &lt;project_name&gt;
+</code></pre><ul>
+<li>When a new version is deployed, It should stop the current instance of the project and install a new version.</li>
+<li>Once the application is running it should run as a non-root user.</li>
+</ul>
+<h2 id="result">
+  Result
+  <a class="heading-link" href="#result">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>I&rsquo;ve created a small tutorial to show how this <a href="https://github.com/knightebsuku/python3-django-qoqa"  class="external-link" target="_blank" rel="noopener">project works</a></p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Menzi Mthembu 
+    ·
+    
+      Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY-SA-4.0</a>
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
