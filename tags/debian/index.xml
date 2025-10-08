@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian on Standalone Dynamics</title>
+    <link>https://www.standalonedynamics.co.za/tags/debian/</link>
+    <description>Recent content in Debian on Standalone Dynamics</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.standalonedynamics.co.za/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Concept - Django project as a debian package</title>
+      <link>https://www.standalonedynamics.co.za/blog/django_debian_package/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/blog/django_debian_package/</guid>
+      <description>&lt;h1 id=&#34;concept---django-project-as-a-debian-package&#34;&gt;Concept - Django project as a debian package&lt;/h1&gt;&#xA;&lt;p&gt;For the past couple of months I&amp;rsquo;ve been pondering whether it would be possible to package a full django project as debian package (.deb).&lt;/p&gt;&#xA;&lt;p&gt;Now and then I tend to write small web applications that run on my machine and use the SQLite database. On one occasion somebody asked if they could run the application on their machine.&lt;/p&gt;&#xA;&lt;p&gt;These small web applications tend to just use Django, Django Rest Framework, JavaScript(eg: jquery) and a CSS framework that does not need to be customised or built and on some occasions a background task like celery.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

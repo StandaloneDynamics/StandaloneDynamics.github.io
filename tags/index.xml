@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Standalone Dynamics</title>
+    <link>https://www.standalonedynamics.co.za/tags/</link>
+    <description>Recent content in Tags on Standalone Dynamics</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 28 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.standalonedynamics.co.za/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dart</title>
+      <link>https://www.standalonedynamics.co.za/tags/dart/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/dart/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Django</title>
+      <link>https://www.standalonedynamics.co.za/tags/django/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/django/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Flutter</title>
+      <link>https://www.standalonedynamics.co.za/tags/flutter/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/flutter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://www.standalonedynamics.co.za/tags/python/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rust</title>
+      <link>https://www.standalonedynamics.co.za/tags/rust/</link>
+      <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/rust/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rest-Framework</title>
+      <link>https://www.standalonedynamics.co.za/tags/rest-framework/</link>
+      <pubDate>Fri, 29 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/rest-framework/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Javascript</title>
+      <link>https://www.standalonedynamics.co.za/tags/javascript/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Visualization</title>
+      <link>https://www.standalonedynamics.co.za/tags/visualization/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/visualization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debian</title>
+      <link>https://www.standalonedynamics.co.za/tags/debian/</link>
+      <pubDate>Wed, 04 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/tags/debian/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
