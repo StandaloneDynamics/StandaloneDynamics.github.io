@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Standalone Dynamics</title>
+    <link>https://www.standalonedynamics.co.za/tags/javascript/</link>
+    <description>Recent content in Javascript on Standalone Dynamics</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 May 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.standalonedynamics.co.za/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding Extra Info on Plotly Charts on Hover</title>
+      <link>https://www.standalonedynamics.co.za/blog/plotly_percentage/</link>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/blog/plotly_percentage/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://plotly.com/javascript/&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plotly&lt;/a&gt; is my goto library when it&amp;rsquo;s time to create visualizations. Its a very easy to use high level library with an array of customization&amp;rsquo;s.&lt;/p&gt;&#xA;&lt;p&gt;Creating a chart is as simple as&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var data = [&#xA;&#x9;{&#xA;&#x9;    x: [1,2,3,4,5,6,7,8,9],&#xA;&#x9;    y: [1,2,4,6,8,10,12,14,16,18],&#xA;&#x9;    type:&amp;#39;bar&amp;#39;&#xA;&#x9;}&#xA;    ];&#xA;    Plotly.newPlot(&amp;#39;myDiv&amp;#39;,data);&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;where &lt;code&gt;myDiv&lt;/code&gt; is the id of the HTML element you want the chart to be inserted in.&lt;/p&gt;&#xA;&lt;p&gt;Giving us a very nice looking bar chart.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://www.standalonedynamics.co.za/bar_1.png&#34; alt=&#34;dash plot&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
