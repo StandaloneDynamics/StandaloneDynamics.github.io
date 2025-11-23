@@ -1,6 +1,6 @@
 ---
 title: "Serving Flutter Web Application With Django"
-date: "2024-01-28"
+date: "2025-01-28"
 description: "Getting Django to serve flutter applications"
 tags: ["Django", "Flutter", "Python", "Dart"]
 draft: false
@@ -12,7 +12,7 @@ I was recently playing with around with [Flutter web](https://flutter.dev/multi-
 The application I decided to test this with is a kanban type application, so flutter would be used to build the frontend UI and Django would provide the REST API.
 
 
-# Development
+## Development
 
 ### Directory Structure
 Our project directory structure will looks very similar to the traditional Django project structure.
@@ -59,7 +59,7 @@ flutter run -d web-server --web-port=9090
  and any changes made will be hot reloaded automatically.
  
  
-# Integrating with Django.
+## Integrating with Django.
 
 Once our frontend is built, we can build it via
 

@@ -1,10 +1,10 @@
 ---
 title: "Amalisidi Launch"
-date: 2025-10-01
-draft: false
+date: 2025-11-23
+draft: true
 ---
 
-## Introducing Amalisidi — Effortless Receipt and Invoice Management for Everyone
+## Introducing Amalisidi — Effortless Archive management for receipts and invoices
 
 Managing receipts and invoices shouldn’t be a chore. Whether you’re an individual tracking rent and groceries or a small business juggling client invoices, keeping things organized can quickly get messy.
 
