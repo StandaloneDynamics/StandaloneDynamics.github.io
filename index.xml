@@ -6,8 +6,15 @@
     <description>Recent content on Standalone Dynamics</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Jun 2025 18:26:02 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 23 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.standalonedynamics.co.za/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amalisidi Launch</title>
+      <link>https://www.standalonedynamics.co.za/blog/amalisidi/</link>
+      <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.standalonedynamics.co.za/blog/amalisidi/</guid>
+      <description>&lt;h2 id=&#34;introducing-amalisidi--effortless-archive-management-for-receipts-and-invoices&#34;&gt;&#xA;  Introducing Amalisidi — Effortless Archive management for receipts and invoices&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introducing-amalisidi--effortless-archive-management-for-receipts-and-invoices&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Over the years, I&amp;rsquo;ve gathered a bunch of receipts and invoices and placed them in folder, but found it very tedious to organize them, I&amp;rsquo;ve often needed to reference a receipt for warranty claims or checked how the price of an item has increased over time, existing solutions were either to complicated or did not suite my needs.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Technical Debt And Project Management</title>
       <link>https://www.standalonedynamics.co.za/blog/technical_debt/</link>
